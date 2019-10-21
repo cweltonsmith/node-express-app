@@ -27,6 +27,7 @@ app.get('/', function (req, res) {
     '/yo/Dr.Rogers <br>' +
     '/fortune <br>' +
     '/fancy/?first=Denise&last=Case <br>' +
+    '/aircraft <br>' +
     '<br> <br>' +
     'Fork the source code from <a href="https://github.com/denisecase/node-express-app">https://github.com/denisecase/node-express-app</a>'
   )
@@ -82,6 +83,12 @@ app.get('/fortune', (req,res) => {
   }
 })
 
+let aircraft = ['C-130', 'C-17', 'KC-135', 'F-16', 'F-22', 'F-35', 'A-10', 'KC-10', 'C-5', 'T-38', 'V-22', 'F-15', 'B-2', 'B-52', 'B-1' ]
+
+app.get('/aircraft', (req,res) => {
+    res.send(`U.S. Military Aircraft: ${aircraft[randomInt(0, aircraft.length)]}`)
+})
+
 // Use middleware to handle all non-managed routes (e.g. /xyz)
 // https://expressjs.com/en/api.html#req.originalUrl
 app.use((req, res, next) => {
@@ -99,6 +106,7 @@ app.listen(port, hostname, () => {
   console.log(`   Try /greeting/yourname`)
   console.log(`   Try /yo/Dr.Rogers`)
   console.log(`   Try /fancy/?first=Denise&last=Case`)
+  console.log('   Try /aircraft')
   console.log('\n Hit CTRL-C CTRL-C to stop\n')
 })
 
